@@ -60,4 +60,14 @@ class ProductTest < ActiveSupport::TestCase
     assert product.invalid?
     assert_equal ["has already been taken"], product.errors[:title]
   end
+
+  test "Product should return latest product" do
+    product = Product.create(
+      title: "basketball",
+      description: "It's a ball that bounces, what more do you want?",
+      price: 15,
+      image_url: "basketball.jpg"
+      )
+    assert_equal Product.latest, product
+  end
 end
